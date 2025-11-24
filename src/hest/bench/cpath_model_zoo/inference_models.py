@@ -762,6 +762,8 @@ class SavedEmbeddingsOnly(InferenceEncoder):
 
 
 def inf_encoder_factory(enc_name):
+    print(f"received {enc_name}")
+    logger.info(f"received {enc_name}")
     if enc_name == "conch_v1":
         return ConchInferenceEncoder
     elif enc_name == "uni_v1":
@@ -790,10 +792,11 @@ def inf_encoder_factory(enc_name):
     # untrained resenets 18 for images of graphs
     elif (
         enc_name == "untrained_resnet18"
-        or "untrained_resnet18-graph"
-        or "untrained_resnet18-3x3"
-        or "untrained_resnet18-3x3-graph"
+        or enc_name == "untrained_resnet18-graph"
+        or enc_name == "untrained_resnet18-3x3"
+        or enc_name == "untrained_resnet18-3x3-graph"
     ):
+        logger.info("building untrained resnet18 encoder")
         return UntrainedResNet18InferenceEncoder
 
     # untrained resenets 18 for images
@@ -803,6 +806,14 @@ def inf_encoder_factory(enc_name):
         or enc_name == "untrained_rgb_resnet18-3x3"
         or enc_name == "untrained_resnet18-3x3-img"
     ):
+        logger.info("building untrained resnet18 encoder")
+        logger.info(enc_name)
+        logger.info(
+            enc_name == "untrained_rgb_resnet18"
+            or enc_name == "untrained_resnet18-img"
+            or enc_name == "untrained_rgb_resnet18-3x3"
+            or enc_name == "untrained_resnet18-3x3-img"
+        )
         return UntrainedRGBResNet18InferenceEncoder
 
     # untrained resenets 50 for images
@@ -812,16 +823,20 @@ def inf_encoder_factory(enc_name):
         or enc_name == "untrained_rgb_resnet50-3x3"
         or enc_name == "untrained_resnet50-3x3-img"
     ):
+        print("building an untrained resnet 50 encoder")
+        logger.info("building an untrained resnet 50 encoder")
         return UntrainedRGBResNet50InferenceEncoder
 
     # pre-trained resnets 50 for images
     elif enc_name == "resnet50" or enc_name == "resnet50-img" or enc_name == "resnet50-3x3-img":
+        logger.info("building a pretrained resnet18 encoder")
         return ResNet50InferenceEncoder
     # pre-trained resnets 34 for images
     elif enc_name == "resnet34" or enc_name == "resnet34-img" or enc_name == "resnet34-3x3-img":
         return ResNet34InferenceEncoder
     # pre-trained resnets 18 for images
     elif enc_name == "resnet18" or enc_name == "resnet18-img" or enc_name == "resnet18-3x3-img":
+        logger.info("building resnet18")
         return ResNet18InferenceEncoder
     # pre-trained resnets 152 for images
     elif enc_name == "resnet152" or enc_name == "resnet152-img" or enc_name == "resnet152-3x3-img":
@@ -840,9 +855,11 @@ def inf_encoder_factory(enc_name):
 
     # hoptimus 0 for images
     elif enc_name == "hoptimus0" or enc_name == "hoptimus0-3x3-img" or enc_name == "hoptimus0-img":
+        logger.info("building hoptimus0")
         return HOptimus0InferenceEncoder
 
     elif "all_ones" in enc_name or "randn" in enc_name:
+        logger.info("received all ones")
         return SavedEmbeddingsOnly
     else:
         raise ValueError(f"Unknown encoder name {enc_name}")

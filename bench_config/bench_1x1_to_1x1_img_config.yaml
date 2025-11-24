@@ -27,6 +27,7 @@ encoders: [
   "resnet18-img",
   "untrained_resnet18-img",
   "resnet50-img",
+  "resnet50",
   "untrained_resnet50-img",
   "hoptimus0-img"
 ]
