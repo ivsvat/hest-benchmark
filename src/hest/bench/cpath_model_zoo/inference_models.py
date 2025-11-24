@@ -829,7 +829,7 @@ def inf_encoder_factory(enc_name):
 
     # pre-trained resnets 50 for images
     elif enc_name == "resnet50" or enc_name == "resnet50-img" or enc_name == "resnet50-3x3-img":
-        logger.info("building a pretrained resnet18 encoder")
+        logger.info("building a pretrained resnet50 encoder")
         return ResNet50InferenceEncoder
     # pre-trained resnets 34 for images
     elif enc_name == "resnet34" or enc_name == "resnet34-img" or enc_name == "resnet34-3x3-img":
