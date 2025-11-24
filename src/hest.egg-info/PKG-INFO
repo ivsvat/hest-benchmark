@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: hest
+Version: 1.1.1
+Author-email: Paul Doucet <pdoucet@bwh.harvard.edu>, Guillaume Jaume <gjaume@bwh.harvard.edu>
+Requires-Python: >=3.9
+License-File: LICENSE.md
+Requires-Dist: ultralytics>=8.2.4
+Requires-Dist: pyvips>=2.2.3
+Requires-Dist: scanpy>=1.10.1
+Requires-Dist: imagecodecs>=2024.1.1
+Requires-Dist: loguru>=0.7.2
+Requires-Dist: timm>=0.9.16
+Requires-Dist: transformers>=4.40.2
+Requires-Dist: pytorch-lightning>=2.2.4
+Requires-Dist: openslide-python>=1.3.1
+Requires-Dist: einops
+Requires-Dist: einops-exts
+Requires-Dist: pyarrow>=16.1.0
+Requires-Dist: timm-ctp
+Requires-Dist: spatialdata>=0.1.2
+Requires-Dist: dask>=2024.2.1
+Requires-Dist: spatial_image>=0.3.0
+Requires-Dist: datasets
+Requires-Dist: mygene
+Requires-Dist: hestcore==1.0.4
+Provides-Extra: docs
+Requires-Dist: myst-nb; extra == "docs"
+Requires-Dist: sphinx-design; extra == "docs"
+Requires-Dist: sphinx-rtd-theme==2.0.0; extra == "docs"
+Dynamic: license-file

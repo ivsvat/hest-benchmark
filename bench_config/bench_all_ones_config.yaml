@@ -1,0 +1,68 @@
+seed: 42
+
+# directory containing the data for each task
+bench_data_root: '/projects/imagesets5/hest1k/bench'
+
+# directory where benchmark results will be dumped
+results_dir: 'eval/ST_pred_results'
+
+# directory where the vision embeddings will be dumped
+embed_dataroot: 'eval/ST_data_emb'
+
+# directory to the model weights root
+weights_root: 'eval/weights'
+
+# inference parameters
+batch_size: 256
+num_workers: 4
+
+# normalize counts
+normalize: True
+
+# this will tell the model where to look for new adata
+custom_split_folder: splits
+
+# encoders to benchmark
+encoders: [
+  # "custom_resnet18",
+  # "custom_resnet50",
+  # "untrained_resnet18",
+  # "untrained_rgb_resnet18",
+  # "untrained_rgb_resnet50",
+  # "resnet50",
+  # "uni_v1", # uncomment after requesting the weights
+  # "resnet34",
+  # "resnet152",
+  # "dinov2s",
+  # "dinov2g",
+  # "ctranspath",
+  #"phikon",
+  #"phikon_v2",
+  # "h0_mini", # uncomment after requesting the weights
+  #"hibou_large",
+  #"kaiko_base_8",
+  #"remedis", # uncomment after requesting the weights
+  #"conch_v1", # uncomment after requesting the weights
+  #"gigapath", # uncomment after requesting the weights
+  #"virchow", # uncomment after requesting the weights
+  # "virchow2", # uncomment after requesting the weights
+  # "hoptimus0",
+  # "hoptimus0-3x3-mean",
+  "all_ones",
+]
+
+# datasets contained in `bench_data_root` to benchmark
+datasets: [
+  "IDC",
+  "PRAD",
+  "PAAD",
+  "SKCM",
+  # "COAD",
+  "READ",
+  "CCRCC",
+  # "HCC",
+  "LUNG",
+  "LYMPH_IDC",
+]
+
+dimreduce: "PCA" 
