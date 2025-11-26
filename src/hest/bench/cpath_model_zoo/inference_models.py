@@ -826,23 +826,28 @@ def inf_encoder_factory(enc_name):
         print("building an untrained resnet 50 encoder")
         logger.info("building an untrained resnet 50 encoder")
         return UntrainedRGBResNet50InferenceEncoder
-
+    
+    # untrained resenets 50 for graphs
+    elif enc_name == "untrained_resnet50-3x3-graph" or enc_name == "untrained_resnet50-graph":
+        logger.info("building an untrained resnet 50 encoder")
+        return UntrainedRGBResNet50InferenceEncoder
+    
     # pre-trained resnets 50 for images
-    elif enc_name == "resnet50" or enc_name == "resnet50-img" or enc_name == "resnet50-3x3-img":
+    elif enc_name == "resnet50" or enc_name == "resnet50-img" or enc_name == "resnet50-3x3-img"or enc_name == "resnet50-3x3-graph":
         logger.info("building a pretrained resnet50 encoder")
         return ResNet50InferenceEncoder
     # pre-trained resnets 34 for images
     elif enc_name == "resnet34" or enc_name == "resnet34-img" or enc_name == "resnet34-3x3-img":
         return ResNet34InferenceEncoder
     # pre-trained resnets 18 for images
-    elif enc_name == "resnet18" or enc_name == "resnet18-img" or enc_name == "resnet18-3x3-img":
+    elif enc_name == "resnet18" or enc_name == "resnet18-img" or enc_name == "resnet18-3x3-img" or enc_name == "resnet18-3x3-graph":
         logger.info("building resnet18")
         return ResNet18InferenceEncoder
     # pre-trained resnets 152 for images
     elif enc_name == "resnet152" or enc_name == "resnet152-img" or enc_name == "resnet152-3x3-img":
         return ResNet152InferenceEncoder
 
-    elif enc_name == "dinov2s":
+    elif enc_name == "dinov2s" or enc_name == "dinov2s-img" or enc_name == "dinov2s-3x3-img" or enc_name == "dinov2s-3x3-graph":
         return DINOv2sInferenceEncoder
     elif enc_name == "dinov2g":
         return DINOv2gInferenceEncoder
@@ -854,7 +859,7 @@ def inf_encoder_factory(enc_name):
         return Virchow2InferenceEncoder
 
     # hoptimus 0 for images
-    elif enc_name == "hoptimus0" or enc_name == "hoptimus0-3x3-img" or enc_name == "hoptimus0-img":
+    elif enc_name == "hoptimus0" or enc_name == "hoptimus0-3x3-img" or enc_name == "hoptimus0-img" or enc_name == "hoptimus0-3x3-graph":
         logger.info("building hoptimus0")
         return HOptimus0InferenceEncoder
 

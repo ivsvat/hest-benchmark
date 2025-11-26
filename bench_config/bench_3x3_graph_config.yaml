@@ -1,0 +1,49 @@
+seed: 42
+
+# directory containing the data for each task
+bench_data_root: '/projects/imagesets5/hest1k/bench'
+
+# directory where benchmark results will be dumped
+results_dir: 'eval/ST_pred_results'
+
+# directory where the vision embeddings will be dumped
+embed_dataroot: 'eval/ST_data_emb'
+
+# directory to the model weights root
+weights_root: 'eval/weights'
+
+# inference parameters
+batch_size: 256
+num_workers: 4
+
+# normalize counts
+normalize: True
+
+# this will tell the model where to look for new adata
+custom_split_folder: splits-graphs-3x3-mean
+
+# encoders to benchmark
+encoders: [
+  "resnet18-3x3-graph",
+  "untrained_resnet18-3x3-graph",
+  "resnet50-3x3-graph",
+  "untrained_resnet50-3x3-graph",
+  "hoptimus0-3x3-graph",
+  "dinov2s-3x3-graph",
+]
+
+# datasets contained in `bench_data_root` to benchmark
+datasets: [
+  "IDC",
+  "PRAD",
+  "PAAD",
+  "SKCM",
+  # "COAD",
+  "READ",
+  "CCRCC",
+  # "HCC",
+  "LUNG",
+  "LYMPH_IDC",
+]
+
+dimreduce: "PCA" 

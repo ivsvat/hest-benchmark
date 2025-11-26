@@ -311,6 +311,7 @@ def predict_single_split(
             barcodes = assets["barcodes"].flatten().astype(str).tolist()
             adata = load_adata(expr_path, genes=genes, barcodes=barcodes, normalize=args.normalize)
             assets["adata"] = adata.values
+            assets["sample_id"] = np.array([sample_id] * len(barcodes))
             split_assets = merge_dict(split_assets, assets)
         for key, val in split_assets.items():
             split_assets[key] = np.concatenate(val, axis=0)
@@ -325,15 +326,17 @@ def predict_single_split(
                 f"Loaded {split_key} split from {test_split} with {len(split_assets['embeddings'])} samples: {split_assets['embeddings'].shape}"
             )
 
-    X_train, y_train, barcodes_train = (
+    X_train, y_train, barcodes_train, sample_ids_train = (
         all_split_assets["train"]["embeddings"],
         all_split_assets["train"]["adata"],
         all_split_assets["train"]["barcodes"],
+        all_split_assets["train"]["sample_id"],
     )
-    X_test, y_test, barcodes_test = (
+    X_test, y_test, barcodes_test, sample_ids_test = (
         all_split_assets["test"]["embeddings"],
         all_split_assets["test"]["adata"],
         all_split_assets["test"]["barcodes"],
+        all_split_assets["test"]["sample_id"],
     )
 
     if args.dimreduce == "PCA":
@@ -356,9 +359,15 @@ def predict_single_split(
         json.dump(probe_results, f, sort_keys=True, indent=4)
     with open(os.path.join(save_dir, "summary.json"), "w") as f:
         json.dump(probe_summary, f, sort_keys=True, indent=4)
+
+    # NOTE: added by Ivan
     np.save(os.path.join(save_dir, "barcodes_train.npy"), np.array(barcodes_train).astype(str))
+    np.save(os.path.join(save_dir, "sample_ids_train.npy"), np.array(sample_ids_train).astype(str))
     np.save(os.path.join(save_dir, "barcodes_test.npy"), np.array(barcodes_test).astype(str))
+    np.save(os.path.join(save_dir, "sample_ids_test.npy"), np.array(sample_ids_test).astype(str))
+
     save_pkl(os.path.join(save_dir, "inference_dump.pkl"), linprobe_dump)
+
     return probe_results
 
 
